@@ -9,9 +9,17 @@ void UVCRMainMenuWidget::NativeOnInitialized()
 {
     Super::NativeOnInitialized();
 
+    WidgetSwitcherMap.Add(CreateRoomButton, SessionCreationWidget);
+    WidgetSwitcherMap.Add(JoinRoomButton, SessionSearchWidget);
+
     if (CreateRoomButton)
     {
         CreateRoomButton->OnButtonClickedSignature.AddUObject(this, &UVCRMainMenuWidget::ChangeActiveWidget);
+    }
+
+    if (JoinRoomButton)
+    {
+        JoinRoomButton->OnButtonClickedSignature.AddUObject(this, &UVCRMainMenuWidget::ChangeActiveWidget);
     }
 
     if (QuitGameButton)
@@ -22,9 +30,9 @@ void UVCRMainMenuWidget::NativeOnInitialized()
 
 void UVCRMainMenuWidget::ChangeActiveWidget(UVCRMenuButton* MenuButton)
 {
-    if (!OnlineWidgetSwitcher || !WidgetSwitcherMap.Contains(MenuButton)) return;
+     if (!OnlineWidgetSwitcher || !WidgetSwitcherMap.Contains(MenuButton)) return;
 
-    OnlineWidgetSwitcher->SetActiveWidget(WidgetSwitcherMap[MenuButton]);
+     OnlineWidgetSwitcher->SetActiveWidget(WidgetSwitcherMap[MenuButton]);
 }
 
 void UVCRMainMenuWidget::QuitGame()

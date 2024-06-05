@@ -4,12 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "UI/Widgets/VCRBaseWidget.h"
+#include "UI/Widgets/MainMenu/VCRCreateSessionWidget.h"
+#include "UI/Widgets/VCRMenuItemWidget.h"
+#include "UI/Widgets/MainMenu/VCRJoinSessionWidget.h"
 #include "VCRMainMenuWidget.generated.h"
 
 class UButton;
 class UWidgetSwitcher;
-class UVCRCreateSessionWidget;
 class UVCRMenuButton;
+class UUserWidget;
 
 UCLASS()
 class VIRTUALCHATROOM_API UVCRMainMenuWidget : public UVCRBaseWidget
@@ -38,9 +41,11 @@ protected:
     UPROPERTY(meta = (BindWidget))
     UVCRMenuButton* QuitGameButton;
 
-    UPROPERTY()
-    UVCRCreateSessionWidget* CreateSession;
+    UPROPERTY(meta = (BindWidget))
+    UVCRCreateSessionWidget* SessionCreationWidget;
 
-    UPROPERTY()
-    TMap<UVCRMenuButton*, UUserWidget*> WidgetSwitcherMap;
+    UPROPERTY(meta = (BindWidget))
+    UVCRJoinSessionWidget* SessionSearchWidget;
+
+    TMap<UVCRMenuButton*, UVCRMenuItemWidget*> WidgetSwitcherMap;
 };

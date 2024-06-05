@@ -9,6 +9,6 @@
 UCLASS()
 class VIRTUALCHATROOM_API UVCRCreateSessionWidget : public UVCRMenuItemWidget
 {
-	GENERATED_BODY()
-	
+    GENERATED_BODY()
+
 };
