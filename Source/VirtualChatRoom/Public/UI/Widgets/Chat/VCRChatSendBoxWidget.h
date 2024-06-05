@@ -13,8 +13,14 @@ UCLASS()
 class VIRTUALCHATROOM_API UVCRChatSendBoxWidget : public UVCRBaseWidget
 {
     GENERATED_BODY()
+public:
+    virtual void NativeOnInitialized();
 
 protected:
+    void SendMessage();
+
+    FText GetMessageText() const;
+
     UPROPERTY(meta = (BindWidget))
     UEditableTextBox* ChatSendTextBlock;
 

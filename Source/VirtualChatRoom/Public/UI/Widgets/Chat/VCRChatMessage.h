@@ -13,10 +13,16 @@ class VIRTUALCHATROOM_API UVCRChatMessage : public UVCRBaseWidget
 {
     GENERATED_BODY()
 
+public:
+    void SetMessage(FText& MessageText);
+    void SetPlayerName(FText& PlayerName);
+
 protected:
-    UPROPERTY(meta = (BindWidget))
-    UTextBlock* PlayerName;
+    void SetTextBlockText(UTextBlock* InTextBlock, FText& Text);
 
     UPROPERTY(meta = (BindWidget))
-    UTextBlock* Message;
+    UTextBlock* PlayerNameTextBlock;
+
+    UPROPERTY(meta = (BindWidget))
+    UTextBlock* MessageTextBlock;
 };
