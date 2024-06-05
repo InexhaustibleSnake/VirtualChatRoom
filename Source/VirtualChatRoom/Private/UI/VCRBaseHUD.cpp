@@ -12,8 +12,8 @@ void AVCRBaseHUD::BeginPlay()
 
 void AVCRBaseHUD::CreateInGameWidget() 
 {
-    const auto CreatedWidget = CreateWidget<UVCRBaseWidget>(GetWorld(), InGameWidget);
-	if (!CreatedWidget) return;
+    const auto CreatedWidget = CreateWidget<UUserWidget>(GetWorld(), InGameWidgetClass);
+    if (!CreatedWidget) return;
 
 	CreatedWidget->AddToViewport();
 }

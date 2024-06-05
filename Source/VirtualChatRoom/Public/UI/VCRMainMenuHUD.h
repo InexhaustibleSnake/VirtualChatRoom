@@ -13,4 +13,5 @@ class VIRTUALCHATROOM_API AVCRMainMenuHUD : public AVCRBaseHUD
 
 public:
     AVCRMainMenuHUD();
+
 };

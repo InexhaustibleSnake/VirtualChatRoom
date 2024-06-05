@@ -7,6 +7,7 @@
 #include "VCRBaseHUD.generated.h"
 
 class UVCRBaseWidget;
+class UWidgetBlueprint;
 
 UCLASS()
 class VIRTUALCHATROOM_API AVCRBaseHUD : public AHUD
@@ -20,5 +21,5 @@ protected:
     void CreateInGameWidget();
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
-    TSubclassOf<UVCRBaseWidget> InGameWidget;
+    TSubclassOf<UUserWidget> InGameWidgetClass;
 };
