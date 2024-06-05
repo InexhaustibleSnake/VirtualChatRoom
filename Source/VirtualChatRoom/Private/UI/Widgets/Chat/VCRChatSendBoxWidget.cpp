@@ -3,6 +3,7 @@
 #include "UI/Widgets/Chat/VCRChatSendBoxWidget.h"
 #include "UI/Widgets/VCRMenuButton.h"
 #include "Components/EditableTextBox.h"
+#include "Logic/VCRChatGameState.h"
 
 void UVCRChatSendBoxWidget::NativeOnInitialized() 
 {
@@ -16,7 +17,12 @@ void UVCRChatSendBoxWidget::NativeOnInitialized()
 
 void UVCRChatSendBoxWidget::SendMessage() 
 {
+    if (!GetWorld()) return;
 
+    const auto GameState = Cast<AVCRChatGameState>(GetWorld()->GetGameState());
+    if (!GameState) return;
+
+    GameState->BroadcastNewMessage("Player", GetMessageText().ToString());
 }
 
 FText UVCRChatSendBoxWidget::GetMessageText() const

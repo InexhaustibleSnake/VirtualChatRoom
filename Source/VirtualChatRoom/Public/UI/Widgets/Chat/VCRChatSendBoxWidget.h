@@ -17,6 +17,7 @@ public:
     virtual void NativeOnInitialized();
 
 protected:
+    UFUNCTION()
     void SendMessage();
 
     FText GetMessageText() const;

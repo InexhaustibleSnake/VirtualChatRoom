@@ -3,17 +3,17 @@
 #include "UI/Widgets/Chat/VCRChatMessage.h"
 #include "Components/TextBlock.h"
 
-void UVCRChatMessage::SetMessage(FText& MessageText) 
+void UVCRChatMessage::SetMessage(const FText& MessageText)
 {
     SetTextBlockText(MessageTextBlock, MessageText);
 }
 
-void UVCRChatMessage::SetPlayerName(FText& PlayerName)
+void UVCRChatMessage::SetPlayerName(const FText& PlayerName)
 {
     SetTextBlockText(PlayerNameTextBlock, PlayerName);
 }
 
-void UVCRChatMessage::SetTextBlockText(UTextBlock* InTextBlock, FText& Text) 
+void UVCRChatMessage::SetTextBlockText(UTextBlock* InTextBlock, const FText& Text)
 {
     if (!InTextBlock) return;
 
