@@ -5,10 +5,12 @@
 #include "UI/VCRChatRoomHUD.h"
 #include "Player/VCRPlayerCharacter.h"
 #include "Logic/VCRChatGameState.h"
+#include "Player/VCRPlayerController.h"
 
 AVCRChatGameMode::AVCRChatGameMode()
 {
     HUDClass = AVCRChatRoomHUD::StaticClass();
     DefaultPawnClass = AVCRPlayerCharacter::StaticClass();
+    PlayerControllerClass = AVCRPlayerController::StaticClass();
     GameStateClass = AVCRChatGameState::StaticClass();
 }

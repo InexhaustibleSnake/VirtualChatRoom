@@ -1,6 +1,8 @@
 // This project is made for a test assignment
 
 #include "Logic/VCRChatGameState.h"
+#include "GameFramework/PlayerState.h"
+#include "Player/VCRPlayerController.h"
 
 void AVCRChatGameState::BroadcastNewMessage(const FString& PlayerName, const FString& MessageText)
 {
@@ -10,7 +12,13 @@ void AVCRChatGameState::BroadcastNewMessage(const FString& PlayerName, const FSt
         return;
     }
 
-    MulticastBroadcastNewMesssage_Implementation(PlayerName, MessageText);
+    for (TObjectIterator<AVCRPlayerController> Itr; Itr; ++Itr)
+    {
+        if (!*Itr) continue;
+
+        Itr->OnNewMessageReceived(PlayerName, MessageText);
+    }
+
 }
 
 void AVCRChatGameState::ServerBroadcastNewMesssage_Implementation(const FString& PlayerName, const FString& MessageText)
@@ -18,7 +26,3 @@ void AVCRChatGameState::ServerBroadcastNewMesssage_Implementation(const FString&
     BroadcastNewMessage(PlayerName, MessageText);
 }
 
-void AVCRChatGameState::MulticastBroadcastNewMesssage_Implementation(const FString& PlayerName, const FString& MessageText)
-{
-    OnSendNewMessageSignature.Broadcast(PlayerName, MessageText);
-}
