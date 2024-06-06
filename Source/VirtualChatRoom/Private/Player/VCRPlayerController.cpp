@@ -31,7 +31,7 @@ void AVCRPlayerController::SendMessage(const FString& PlayerName, const FString&
     const auto GameState = Cast<AVCRChatGameState>(GetWorld()->GetGameState());
     if (!GameState) return;
 
-    GameState->BroadcastNewMessage("Player", MessageText);
+    GameState->BroadcastNewMessage(PlayerName, MessageText);
 }
 
 void AVCRPlayerController::ServerSendMessage_Implementation(const FString& PlayerName, const FString& MessageText)

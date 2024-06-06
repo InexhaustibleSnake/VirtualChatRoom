@@ -33,7 +33,7 @@ protected:
     UPROPERTY(Transient)
     FName CameraMeshSocketName = "CameraSocket";
 
-    float TurnPitchRate = 50.0f;
+    float TurnPitchRate = 90.0f;
 
-    float TurnYawRate = 50.0f;
+    float TurnYawRate = 90.0f;
 };

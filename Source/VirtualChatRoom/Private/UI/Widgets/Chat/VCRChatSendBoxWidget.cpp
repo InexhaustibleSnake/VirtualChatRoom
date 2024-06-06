@@ -4,6 +4,7 @@
 #include "UI/Widgets/VCRMenuButton.h"
 #include "Components/EditableTextBox.h"
 #include "Player/VCRPlayerController.h"
+#include "Logic/VCRGameInstance.h"
 
 void UVCRChatSendBoxWidget::NativeOnInitialized()
 {
@@ -20,10 +21,17 @@ void UVCRChatSendBoxWidget::SendMessage()
     const auto PlayerController = Cast<AVCRPlayerController>(GetOwningPlayer());
     if (!PlayerController) return;
 
-    PlayerController->SendMessage("Player", GetMessageText().ToString());
+    PlayerController->SendMessage(GetPlayerName().ToString(), GetMessageText().ToString());
 }
 
 FText UVCRChatSendBoxWidget::GetMessageText() const
 {
     return ChatSendTextBlock ? ChatSendTextBlock->GetText() : FText();
+}
+
+FName UVCRChatSendBoxWidget::GetPlayerName() const
+{
+    const auto GameInstance = Cast<UVCRGameInstance>(GetGameInstance());
+
+    return GameInstance ? GameInstance->GetPlayerName() : FName();
 }

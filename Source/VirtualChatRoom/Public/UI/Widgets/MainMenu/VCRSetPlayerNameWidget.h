@@ -4,29 +4,28 @@
 
 #include "CoreMinimal.h"
 #include "UI/Widgets/VCRBaseWidget.h"
-#include "VCRChatSendBoxWidget.generated.h"
+#include "VCRSetPlayerNameWidget.generated.h"
 
 class UEditableTextBox;
 class UVCRMenuButton;
 
 UCLASS()
-class VIRTUALCHATROOM_API UVCRChatSendBoxWidget : public UVCRBaseWidget
+class VIRTUALCHATROOM_API UVCRSetPlayerNameWidget : public UVCRBaseWidget
 {
     GENERATED_BODY()
+
 public:
     virtual void NativeOnInitialized();
 
 protected:
     UFUNCTION()
-    void SendMessage();
+    void SavePlayerName();
 
-    FText GetMessageText() const;
-
-    FName GetPlayerName() const;
+    FName GetTextBoxPlayerName() const;
 
     UPROPERTY(meta = (BindWidget))
-    UEditableTextBox* ChatSendTextBlock;
+    UEditableTextBox* SetNameTextBox;
 
     UPROPERTY(meta = (BindWidget))
-    UVCRMenuButton* SendTextButton;
+    UVCRMenuButton* SaveNameButton;
 };

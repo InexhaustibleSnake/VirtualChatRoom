@@ -16,4 +16,5 @@ void AVCRBaseHUD::CreateInGameWidget()
     if (!CreatedWidget) return;
 
 	CreatedWidget->AddToViewport();
+	InGameWidget = CreatedWidget;
 }

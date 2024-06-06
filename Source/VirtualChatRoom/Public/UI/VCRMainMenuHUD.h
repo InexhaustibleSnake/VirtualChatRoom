@@ -14,4 +14,9 @@ class VIRTUALCHATROOM_API AVCRMainMenuHUD : public AVCRBaseHUD
 public:
     AVCRMainMenuHUD();
 
+    virtual void BeginPlay() override;
+
+protected:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
+    TSubclassOf<UUserWidget> SetNickNameWidgetClass;
 };
