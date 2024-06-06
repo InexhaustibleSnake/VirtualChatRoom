@@ -2,7 +2,6 @@
 
 #include "Logic/VCRChatGameState.h"
 
-
 void AVCRChatGameState::BroadcastNewMessage(const FString& PlayerName, const FString& MessageText)
 {
     if (!HasAuthority())

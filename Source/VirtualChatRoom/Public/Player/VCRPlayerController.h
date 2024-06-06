@@ -7,6 +7,7 @@
 #include "VCRPlayerController.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnSendNewMessageSignature, const FString&, const FString&);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnChangePlayerListVisibility, bool);
 
 UCLASS()
 class VIRTUALCHATROOM_API AVCRPlayerController : public APlayerController
@@ -22,11 +23,14 @@ public:
     void OnNewMessageReceived(const FString& PlayerName, const FString& MessageText);
 
     FOnSendNewMessageSignature OnSendNewMessageSignature;
+    FOnChangePlayerListVisibility OnWantPlayersListSignature;
 
 protected:
     virtual void SetupInputComponent() override;
 
     void OpenChat();
+
+    void ChangePlayerListVisibility(bool IsVisible);
 
     UFUNCTION(Server, Unreliable)
     void ServerSendMessage(const FString& PlayerName, const FString& MessageText);

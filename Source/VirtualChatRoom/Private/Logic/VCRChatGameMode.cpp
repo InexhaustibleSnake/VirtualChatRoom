@@ -6,6 +6,7 @@
 #include "Player/VCRPlayerCharacter.h"
 #include "Logic/VCRChatGameState.h"
 #include "Player/VCRPlayerController.h"
+#include "Player/VCRPlayerState.h"
 
 AVCRChatGameMode::AVCRChatGameMode()
 {
@@ -13,4 +14,5 @@ AVCRChatGameMode::AVCRChatGameMode()
     DefaultPawnClass = AVCRPlayerCharacter::StaticClass();
     PlayerControllerClass = AVCRPlayerController::StaticClass();
     GameStateClass = AVCRChatGameState::StaticClass();
+    PlayerStateClass = AVCRPlayerState::StaticClass();
 }

@@ -13,4 +13,7 @@ class VIRTUALCHATROOM_API AVCRChatRoomHUD : public AVCRBaseHUD
 
 public:
     AVCRChatRoomHUD();
+
+protected:
+    virtual void BeginPlay() override;
 };

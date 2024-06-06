@@ -7,6 +7,7 @@
 #include "VCRInGameHUDWidget.generated.h"
 
 class UVCRChatContainerWidget;
+class UVCRPlayersListWidget;
 
 UCLASS()
 class VIRTUALCHATROOM_API UVCRInGameHUDWidget : public UVCRBaseWidget
@@ -22,4 +23,7 @@ protected:
 
     UPROPERTY(meta = (BindWidget))
     UVCRChatContainerWidget* ChatWidget;
+
+    UPROPERTY(meta = (BindWidget))
+    UVCRPlayersListWidget* PlayersList;
 };

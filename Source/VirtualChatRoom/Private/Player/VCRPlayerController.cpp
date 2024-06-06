@@ -45,12 +45,24 @@ void AVCRPlayerController::SetupInputComponent()
     if (!InputComponent) return;
 
     InputComponent->BindAction("OpenChat", IE_Pressed, this, &AVCRPlayerController::OpenChat);
+
+    DECLARE_DELEGATE_OneParam(FOpenChatSignature, bool);
+    InputComponent->BindAction<FOpenChatSignature>(
+        "OpenPlayersList", IE_Pressed, this, &AVCRPlayerController::ChangePlayerListVisibility, true);
+
+        InputComponent->BindAction<FOpenChatSignature>(
+        "OpenPlayersList", IE_Released, this, &AVCRPlayerController::ChangePlayerListVisibility, false);
 }
 
 void AVCRPlayerController::OpenChat()
 {
     SetShowMouseCursor(!bShowMouseCursor);
     bShowMouseCursor ? SetInputMode(FInputModeGameAndUI()) : SetInputMode(FInputModeGameOnly());
+}
+
+void AVCRPlayerController::ChangePlayerListVisibility(bool IsVisible) 
+{
+    OnWantPlayersListSignature.Broadcast(IsVisible);
 }
 
 void AVCRPlayerController::OnNewMessageReceived(const FString& PlayerName, const FString& MessageText)

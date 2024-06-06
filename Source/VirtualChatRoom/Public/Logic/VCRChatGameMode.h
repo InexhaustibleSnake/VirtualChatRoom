@@ -13,4 +13,5 @@ class VIRTUALCHATROOM_API AVCRChatGameMode : public AVCRBaseGameMode
 
 public:
     AVCRChatGameMode();
+
 };
