@@ -20,6 +20,10 @@ public:
 
 protected:
     UFUNCTION(Server, Unreliable)
-    void ServerBroadcastNewMesssage(const FString& PlayerName, const FString& MessageText);
-    void ServerBroadcastNewMesssage_Implementation(const FString& PlayerName, const FString& MessageText);
+    void ServerBroadcastNewMessage(const FString& PlayerName, const FString& MessageText);
+    void ServerBroadcastNewMessage_Implementation(const FString& PlayerName, const FString& MessageText);
+
+    UFUNCTION(NetMulticast, Unreliable)
+    void MulticastBroadcastNewMessage(const FString& PlayerName, const FString& MessageText);
+    void MulticastBroadcastNewMessage_Implementation(const FString& PlayerName, const FString& MessageText);
 };

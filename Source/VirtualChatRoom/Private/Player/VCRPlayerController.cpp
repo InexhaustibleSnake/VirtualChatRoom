@@ -34,6 +34,11 @@ void AVCRPlayerController::SendMessage(const FString& PlayerName, const FString&
     GameState->BroadcastNewMessage("Player", MessageText);
 }
 
+void AVCRPlayerController::ServerSendMessage_Implementation(const FString& PlayerName, const FString& MessageText)
+{
+    SendMessage(PlayerName, MessageText);
+}
+
 void AVCRPlayerController::SetupInputComponent()
 {
     Super::SetupInputComponent();
@@ -48,19 +53,7 @@ void AVCRPlayerController::OpenChat()
     bShowMouseCursor ? SetInputMode(FInputModeGameAndUI()) : SetInputMode(FInputModeGameOnly());
 }
 
-void AVCRPlayerController::ServerSendMessage_Implementation(const FString& PlayerName, const FString& MessageText)
-{
-    SendMessage(PlayerName, MessageText);
-}
-
 void AVCRPlayerController::OnNewMessageReceived(const FString& PlayerName, const FString& MessageText)
-{
-    ClientOnNewMessageReceived_Implementation(PlayerName, MessageText);
-
-    OnSendNewMessageSignature.Broadcast(PlayerName, MessageText);
-}
-
-void AVCRPlayerController::ClientOnNewMessageReceived_Implementation(const FString& PlayerName, const FString& MessageText)
 {
     OnSendNewMessageSignature.Broadcast(PlayerName, MessageText);
 }

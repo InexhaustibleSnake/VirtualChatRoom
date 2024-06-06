@@ -31,8 +31,4 @@ protected:
     UFUNCTION(Server, Unreliable)
     void ServerSendMessage(const FString& PlayerName, const FString& MessageText);
     void ServerSendMessage_Implementation(const FString& PlayerName, const FString& MessageText);
-
-    UFUNCTION(Client, Unreliable)
-    void ClientOnNewMessageReceived(const FString& PlayerName, const FString& MessageText);
-    void ClientOnNewMessageReceived_Implementation(const FString& PlayerName, const FString& MessageText);
 };
