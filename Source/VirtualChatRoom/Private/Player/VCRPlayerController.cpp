@@ -7,12 +7,6 @@ void AVCRPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
-    const auto GameState = GetChatGameState();
-    if (GameState)
-    {
-        GameState->OnSendNewMessageSignature.AddUObject(this, &AVCRPlayerController::OnNewMessageReceived);
-    }
-
     SetInputMode(FInputModeGameOnly());
     SetShowMouseCursor(false);
 }

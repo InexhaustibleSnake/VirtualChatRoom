@@ -8,6 +8,7 @@
 
 class UScrollBox;
 class UVCRChatSendBoxWidget;
+class AVCRChatGameState;
 
 UCLASS()
 class VIRTUALCHATROOM_API UVCRChatContainerWidget : public UVCRBaseWidget
@@ -20,6 +21,10 @@ public:
     void AddMessage(const FString& PlayerName, const FString& Message);
 
 protected:
+    virtual void NativeOnInitialized() override;
+
+    AVCRChatGameState* GetChatGameState() const;
+
     UPROPERTY(meta = (BindWidget))
     UScrollBox* ChatBox;
 

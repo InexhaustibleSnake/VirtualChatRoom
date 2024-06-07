@@ -16,6 +16,7 @@ class VIRTUALCHATROOM_API UVCRTextWidget : public UVCRBaseWidget
 public:
     virtual void NativePreConstruct() override;
 
+    UFUNCTION(BlueprintCallable, Category = "UI")
     void SetWidgetText(const FText& Text);
 
 protected:
