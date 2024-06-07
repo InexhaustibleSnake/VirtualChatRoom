@@ -6,6 +6,8 @@
 #include "GameFramework/PlayerController.h"
 #include "VCRPlayerController.generated.h"
 
+class AVCRChatGameState;
+
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnSendNewMessageSignature, const FString&, const FString&);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnChangePlayerListVisibility, bool);
 
@@ -26,6 +28,8 @@ public:
     FOnChangePlayerListVisibility OnWantPlayersListSignature;
 
 protected:
+    AVCRChatGameState* GetChatGameState() const;
+
     virtual void SetupInputComponent() override;
 
     void OpenChat();

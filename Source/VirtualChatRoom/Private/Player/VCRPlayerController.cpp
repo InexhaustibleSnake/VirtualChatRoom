@@ -7,12 +7,11 @@ void AVCRPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
-    if (!GetWorld()) return;
-
-    const auto GameState = Cast<AVCRChatGameState>(GetWorld()->GetGameState());
-    if (!GameState) return;
-
-    GameState->OnSendNewMessageSignature.AddUObject(this, &AVCRPlayerController::OnNewMessageReceived);
+    const auto GameState = GetChatGameState();
+    if (GameState)
+    {
+        GameState->OnSendNewMessageSignature.AddUObject(this, &AVCRPlayerController::OnNewMessageReceived);
+    }
 
     SetInputMode(FInputModeGameOnly());
     SetShowMouseCursor(false);
@@ -26,9 +25,7 @@ void AVCRPlayerController::SendMessage(const FString& PlayerName, const FString&
         return;
     }
 
-    if (!GetWorld()) return;
-
-    const auto GameState = Cast<AVCRChatGameState>(GetWorld()->GetGameState());
+    const auto GameState = GetChatGameState();
     if (!GameState) return;
 
     GameState->BroadcastNewMessage(PlayerName, MessageText);
@@ -37,6 +34,11 @@ void AVCRPlayerController::SendMessage(const FString& PlayerName, const FString&
 void AVCRPlayerController::ServerSendMessage_Implementation(const FString& PlayerName, const FString& MessageText)
 {
     SendMessage(PlayerName, MessageText);
+}
+
+AVCRChatGameState* AVCRPlayerController::GetChatGameState() const
+{
+    return GetWorld() ? Cast<AVCRChatGameState>(GetWorld()->GetGameState()) : nullptr;
 }
 
 void AVCRPlayerController::SetupInputComponent()
@@ -50,7 +52,7 @@ void AVCRPlayerController::SetupInputComponent()
     InputComponent->BindAction<FOpenChatSignature>(
         "OpenPlayersList", IE_Pressed, this, &AVCRPlayerController::ChangePlayerListVisibility, true);
 
-        InputComponent->BindAction<FOpenChatSignature>(
+    InputComponent->BindAction<FOpenChatSignature>(
         "OpenPlayersList", IE_Released, this, &AVCRPlayerController::ChangePlayerListVisibility, false);
 }
 
@@ -60,7 +62,7 @@ void AVCRPlayerController::OpenChat()
     bShowMouseCursor ? SetInputMode(FInputModeGameAndUI()) : SetInputMode(FInputModeGameOnly());
 }
 
-void AVCRPlayerController::ChangePlayerListVisibility(bool IsVisible) 
+void AVCRPlayerController::ChangePlayerListVisibility(bool IsVisible)
 {
     OnWantPlayersListSignature.Broadcast(IsVisible);
 }
