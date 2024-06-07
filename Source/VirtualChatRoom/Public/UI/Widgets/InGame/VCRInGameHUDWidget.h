@@ -14,13 +14,7 @@ class VIRTUALCHATROOM_API UVCRInGameHUDWidget : public UVCRBaseWidget
 {
     GENERATED_BODY()
 
-public:
-    virtual void NativeOnInitialized();
-
 protected:
-    UFUNCTION()
-    void OnNewMessageReceive(const FString& PlayerName, const FString& Message);
-
     UPROPERTY(meta = (BindWidget))
     UVCRChatContainerWidget* ChatWidget;
 

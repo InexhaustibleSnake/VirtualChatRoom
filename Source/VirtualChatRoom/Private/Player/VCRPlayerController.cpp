@@ -60,8 +60,3 @@ void AVCRPlayerController::ChangePlayerListVisibility(bool IsVisible)
 {
     OnWantPlayersListSignature.Broadcast(IsVisible);
 }
-
-void AVCRPlayerController::OnNewMessageReceived(const FString& PlayerName, const FString& MessageText)
-{
-    OnSendNewMessageSignature.Broadcast(PlayerName, MessageText);
-}

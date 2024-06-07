@@ -24,7 +24,6 @@ void UVCRChatContainerWidget::NativeOnInitialized()
         for (const auto OneLogData : GameState->GetChatLog())
         {
             AddMessage(OneLogData.PlayerName.ToString(), OneLogData.Message.ToString());
-         
         }
     }
 }

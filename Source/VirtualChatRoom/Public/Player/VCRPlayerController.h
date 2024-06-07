@@ -8,7 +8,6 @@
 
 class AVCRChatGameState;
 
-DECLARE_MULTICAST_DELEGATE_TwoParams(FOnSendNewMessageSignature, const FString&, const FString&);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnChangePlayerListVisibility, bool);
 
 UCLASS()
@@ -21,10 +20,6 @@ public:
 
     void SendMessage(const FString& PlayerName, const FString& MessageText);
 
-    UFUNCTION()
-    void OnNewMessageReceived(const FString& PlayerName, const FString& MessageText);
-
-    FOnSendNewMessageSignature OnSendNewMessageSignature;
     FOnChangePlayerListVisibility OnWantPlayersListSignature;
 
 protected:
